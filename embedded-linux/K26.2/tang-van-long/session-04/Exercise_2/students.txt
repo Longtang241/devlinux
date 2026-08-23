@@ -1,0 +1,5 @@
+SV001|Nguyen Van An|KTPM01|8.5
+SV002|Tran Thi Bich|KTPM01|7.2
+SV003|Le Van Cuong|HTTT02|9.1
+SV004|Pham Thi Dung|HTTT02|6.8
+SV005|Hoang Van Em|KHMT03|5.0
