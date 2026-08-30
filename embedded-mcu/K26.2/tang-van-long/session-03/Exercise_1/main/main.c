@@ -36,6 +36,8 @@
 #include <stdbool.h>
 
 #include "esp_timer.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
 
 /*
@@ -54,6 +56,8 @@
 
 #define BTN_PIN                 (14U)
 
+#define NUM_SEGMENTS             (7U)
+
 
 /*
  * ============================================================
@@ -64,6 +68,7 @@
 #define DEBOUNCE_MS             (25U)
 #define DOUBLE_CLICK_MS         (350U)
 #define LONG_PRESS_MS           (800U)
+
 #define REPEAT_PERIOD_MS        (500U)
 
 #define POLL_PERIOD_MS           (5U)
@@ -117,8 +122,7 @@
 #define GPIO_MATRIX_OUT_INV_BIT          (9U)
 #define GPIO_MATRIX_OEN_SEL_BIT          (10U)
 #define GPIO_MATRIX_OEN_INV_BIT          (11U)
-
-#define GPIO_MATRIX_GPIO_OUT_SIGNAL     (0x100U)
+#define GPIO_MATRIX_GPIO_OUT_SIGNAL     (0x80U)
 
 
 /*
@@ -200,12 +204,11 @@ static const uint8_t SEGMENT_MAP[10] =
     0x6FU       /* 9 */
 };
 
-
-/*
- * ============================================================
- * SEGMENT GPIO MASK
- * ============================================================
- */
+static const uint32_t SEGMENT_PINS[NUM_SEGMENTS] =
+{
+    SEG_A_PIN, SEG_B_PIN, SEG_C_PIN, SEG_D_PIN,
+    SEG_E_PIN, SEG_F_PIN, SEG_G_PIN
+};
 
 #define SEGMENT_GPIO_MASK       \
     ((1U << SEG_A_PIN) |       \
@@ -219,6 +222,21 @@ static const uint8_t SEGMENT_MAP[10] =
 static inline volatile uint32_t *reg_ptr(uint32_t address)
 {
     return (volatile uint32_t *)address;
+}
+
+static uint32_t io_mux_addr_for_segment_pin(uint32_t pin)
+{
+    switch (pin)
+    {
+        case SEG_A_PIN: return IO_MUX_GPIO4_ADDR;
+        case SEG_B_PIN: return IO_MUX_GPIO5_ADDR;
+        case SEG_C_PIN: return IO_MUX_GPIO6_ADDR;
+        case SEG_D_PIN: return IO_MUX_GPIO7_ADDR;
+        case SEG_E_PIN: return IO_MUX_GPIO15_ADDR;
+        case SEG_F_PIN: return IO_MUX_GPIO16_ADDR;
+        case SEG_G_PIN: return IO_MUX_GPIO17_ADDR;
+        default:        return 0U;
+    }
 }
 
 static void iomux_config(
@@ -290,65 +308,15 @@ static void gpio_matrix_output_config(uint32_t gpio)
     *reg = value;
 }
 
-
-/*
- * ============================================================
- * INITIALIZE DISPLAY
- * ============================================================
- */
-
 static void display_init(void)
 {
+    for (uint32_t i = 0U; i < NUM_SEGMENTS; i++)
+    {
+        uint32_t pin = SEGMENT_PINS[i];
 
-    iomux_config(
-        IO_MUX_GPIO4_ADDR,
-        false,
-        false
-    );
-
-    iomux_config(
-        IO_MUX_GPIO5_ADDR,
-        false,
-        false
-    );
-
-    iomux_config(
-        IO_MUX_GPIO6_ADDR,
-        false,
-        false
-    );
-
-    iomux_config(
-        IO_MUX_GPIO7_ADDR,
-        false,
-        false
-    );
-
-    iomux_config(
-        IO_MUX_GPIO15_ADDR,
-        false,
-        false
-    );
-
-    iomux_config(
-        IO_MUX_GPIO16_ADDR,
-        false,
-        false
-    );
-
-    iomux_config(
-        IO_MUX_GPIO17_ADDR,
-        false,
-        false
-    );
-
-    gpio_matrix_output_config(SEG_A_PIN);
-    gpio_matrix_output_config(SEG_B_PIN);
-    gpio_matrix_output_config(SEG_C_PIN);
-    gpio_matrix_output_config(SEG_D_PIN);
-    gpio_matrix_output_config(SEG_E_PIN);
-    gpio_matrix_output_config(SEG_F_PIN);
-    gpio_matrix_output_config(SEG_G_PIN);
+        iomux_config(io_mux_addr_for_segment_pin(pin), false, false);
+        gpio_matrix_output_config(pin);
+    }
 
     volatile uint32_t *enable_reg =
         reg_ptr(GPIO_ENABLE_W1TS_ADDR);
@@ -383,51 +351,19 @@ static uint32_t button_read(void)
 static void display_digit(uint8_t digit)
 {
     uint8_t pattern = SEGMENT_MAP[digit];
-
     uint32_t set_mask = 0U;
 
-    if (pattern & (1U << 0))
+    for (uint32_t i = 0U; i < NUM_SEGMENTS; i++)
     {
-        set_mask |= (1U << SEG_A_PIN);
+        if (pattern & (1U << i))
+        {
+            set_mask |= (1U << SEGMENT_PINS[i]);
+        }
     }
 
-    if (pattern & (1U << 1))
-    {
-        set_mask |= (1U << SEG_B_PIN);
-    }
-
-    if (pattern & (1U << 2))
-    {
-        set_mask |= (1U << SEG_C_PIN);
-    }
-
-    if (pattern & (1U << 3))
-    {
-        set_mask |= (1U << SEG_D_PIN);
-    }
-
-    if (pattern & (1U << 4))
-    {
-        set_mask |= (1U << SEG_E_PIN);
-    }
-
-    if (pattern & (1U << 5))
-    {
-        set_mask |= (1U << SEG_F_PIN);
-    }
-
-    if (pattern & (1U << 6))
-    {
-        set_mask |= (1U << SEG_G_PIN);
-    }
-
-    volatile uint32_t *clear_reg =
-        reg_ptr(GPIO_OUT_W1TC_REG_ADDR);
-
+    volatile uint32_t *clear_reg = reg_ptr(GPIO_OUT_W1TC_REG_ADDR);
     *clear_reg = SEGMENT_GPIO_MASK;
-    volatile uint32_t *set_reg =
-        reg_ptr(GPIO_OUT_W1TS_REG_ADDR);
-
+    volatile uint32_t *set_reg = reg_ptr(GPIO_OUT_W1TS_REG_ADDR);
     *set_reg = set_mask;
 }
 
@@ -454,18 +390,9 @@ static void counter_decrement(uint8_t *counter)
     display_digit(*counter);
 }
 
-static void delay_ms(uint32_t milliseconds)
+static void poll_delay(uint32_t milliseconds)
 {
-    int64_t start = esp_timer_get_time();
-
-    int64_t duration =
-        (int64_t)milliseconds * 1000LL;
-
-
-    while ((esp_timer_get_time() - start) < duration)
-    {
-        
-    }
+    vTaskDelay(pdMS_TO_TICKS(milliseconds));
 }
 
 void app_main(void)
@@ -592,6 +519,6 @@ void app_main(void)
             pending_click = false;
         }
 
-        delay_ms(POLL_PERIOD_MS);
+        poll_delay(POLL_PERIOD_MS);
     }
 }
