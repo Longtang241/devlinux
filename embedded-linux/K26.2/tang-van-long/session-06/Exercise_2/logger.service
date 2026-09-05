@@ -1,0 +1,18 @@
+[Unit]
+Description=Logger Test Service
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/logger
+
+# Send stdout and stderr to systemd journal.
+StandardOutput=journal
+StandardError=journal
+
+# Do NOT restart after crash.
+Restart=no
+
+[Install]
+WantedBy=multi-user.target
+

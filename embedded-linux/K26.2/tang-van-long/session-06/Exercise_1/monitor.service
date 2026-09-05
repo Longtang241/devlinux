@@ -1,0 +1,25 @@
+[Unit]
+Description=Monitor Background Service
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/monitor
+
+# Restart automatically if the service crashes.
+Restart=on-failure
+
+# Wait 5 seconds before restarting.
+RestartSec=5
+
+# Maximum 3 restart attempts within 30 seconds.
+StartLimitIntervalSec=30
+StartLimitBurst=3
+
+# Send stdout/stderr to systemd journal.
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+

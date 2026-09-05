@@ -1,0 +1,170 @@
+=== 1. Full service log ===
+Thg 9 05 23:09:39 long-computer systemd[1]: Started Logger Test Service.
+Thg 9 05 23:09:39 long-computer logger[4284]: Logger service started. PID: 4284
+Thg 9 05 23:09:39 long-computer logger[4284]: Service running normally, cycle 1
+Thg 9 05 23:09:39 long-computer logger[4284]: Memory usage high: 86%
+Thg 9 05 23:09:39 long-computer logger[4284]: Failed to connect to database, retry 1
+Thg 9 05 23:09:41 long-computer logger[4284]: Service running normally, cycle 2
+Thg 9 05 23:09:41 long-computer logger[4284]: Memory usage high: 85%
+Thg 9 05 23:09:41 long-computer logger[4284]: Failed to connect to database, retry 2
+Thg 9 05 23:09:43 long-computer logger[4284]: Service running normally, cycle 3
+Thg 9 05 23:09:43 long-computer logger[4284]: Memory usage high: 93%
+Thg 9 05 23:09:43 long-computer logger[4284]: Failed to connect to database, retry 3
+Thg 9 05 23:09:45 long-computer logger[4284]: Service running normally, cycle 4
+Thg 9 05 23:09:45 long-computer logger[4284]: Memory usage high: 82%
+Thg 9 05 23:09:45 long-computer logger[4284]: Failed to connect to database, retry 4
+Thg 9 05 23:09:47 long-computer logger[4284]: Service running normally, cycle 5
+Thg 9 05 23:09:47 long-computer logger[4284]: Memory usage high: 85%
+Thg 9 05 23:09:47 long-computer logger[4284]: Failed to connect to database, retry 5
+Thg 9 05 23:09:49 long-computer logger[4284]: Service running normally, cycle 6
+Thg 9 05 23:09:49 long-computer logger[4284]: Memory usage high: 94%
+Thg 9 05 23:09:49 long-computer logger[4284]: Failed to connect to database, retry 6
+Thg 9 05 23:09:51 long-computer logger[4284]: Service running normally, cycle 7
+Thg 9 05 23:09:51 long-computer logger[4284]: Memory usage high: 82%
+Thg 9 05 23:09:51 long-computer logger[4284]: Failed to connect to database, retry 7
+Thg 9 05 23:09:53 long-computer logger[4284]: Service running normally, cycle 8
+Thg 9 05 23:09:53 long-computer logger[4284]: Memory usage high: 83%
+Thg 9 05 23:09:53 long-computer logger[4284]: Failed to connect to database, retry 8
+Thg 9 05 23:09:55 long-computer logger[4284]: Service running normally, cycle 9
+Thg 9 05 23:09:55 long-computer logger[4284]: Memory usage high: 93%
+Thg 9 05 23:09:55 long-computer logger[4284]: Failed to connect to database, retry 9
+Thg 9 05 23:09:57 long-computer logger[4284]: Service running normally, cycle 10
+Thg 9 05 23:09:57 long-computer logger[4284]: Memory usage high: 92%
+Thg 9 05 23:09:57 long-computer logger[4284]: Failed to connect to database, retry 10
+Thg 9 05 23:09:59 long-computer logger[4284]: Service running normally, cycle 11
+Thg 9 05 23:09:59 long-computer logger[4284]: Memory usage high: 86%
+Thg 9 05 23:09:59 long-computer logger[4284]: Failed to connect to database, retry 11
+Thg 9 05 23:10:01 long-computer logger[4284]: Service running normally, cycle 12
+Thg 9 05 23:10:01 long-computer logger[4284]: Memory usage high: 94%
+Thg 9 05 23:10:01 long-computer logger[4284]: Failed to connect to database, retry 12
+Thg 9 05 23:10:03 long-computer logger[4284]: Service running normally, cycle 13
+Thg 9 05 23:10:03 long-computer logger[4284]: Memory usage high: 90%
+Thg 9 05 23:10:03 long-computer logger[4284]: Failed to connect to database, retry 13
+Thg 9 05 23:10:05 long-computer logger[4284]: Service running normally, cycle 14
+Thg 9 05 23:10:05 long-computer logger[4284]: Memory usage high: 83%
+Thg 9 05 23:10:05 long-computer logger[4284]: Failed to connect to database, retry 14
+Thg 9 05 23:10:07 long-computer logger[4284]: Service running normally, cycle 15
+Thg 9 05 23:10:07 long-computer logger[4284]: Memory usage high: 91%
+Thg 9 05 23:10:07 long-computer logger[4284]: Failed to connect to database, retry 15
+Thg 9 05 23:10:09 long-computer logger[4284]: Fatal error: service is crashing now
+Thg 9 05 23:10:09 long-computer systemd[1]: logger.service: Main process exited, code=dumped, status=6/ABRT
+Thg 9 05 23:10:09 long-computer systemd[1]: logger.service: Failed with result 'core-dump'.
+=== 2. Warning level and above ===
+Thg 9 05 23:09:39 long-computer logger[4284]: Memory usage high: 86%
+Thg 9 05 23:09:39 long-computer logger[4284]: Failed to connect to database, retry 1
+Thg 9 05 23:09:41 long-computer logger[4284]: Memory usage high: 85%
+Thg 9 05 23:09:41 long-computer logger[4284]: Failed to connect to database, retry 2
+Thg 9 05 23:09:43 long-computer logger[4284]: Memory usage high: 93%
+Thg 9 05 23:09:43 long-computer logger[4284]: Failed to connect to database, retry 3
+Thg 9 05 23:09:45 long-computer logger[4284]: Memory usage high: 82%
+Thg 9 05 23:09:45 long-computer logger[4284]: Failed to connect to database, retry 4
+Thg 9 05 23:09:47 long-computer logger[4284]: Memory usage high: 85%
+Thg 9 05 23:09:47 long-computer logger[4284]: Failed to connect to database, retry 5
+Thg 9 05 23:09:49 long-computer logger[4284]: Memory usage high: 94%
+Thg 9 05 23:09:49 long-computer logger[4284]: Failed to connect to database, retry 6
+Thg 9 05 23:09:51 long-computer logger[4284]: Memory usage high: 82%
+Thg 9 05 23:09:51 long-computer logger[4284]: Failed to connect to database, retry 7
+Thg 9 05 23:09:53 long-computer logger[4284]: Memory usage high: 83%
+Thg 9 05 23:09:53 long-computer logger[4284]: Failed to connect to database, retry 8
+Thg 9 05 23:09:55 long-computer logger[4284]: Memory usage high: 93%
+Thg 9 05 23:09:55 long-computer logger[4284]: Failed to connect to database, retry 9
+Thg 9 05 23:09:57 long-computer logger[4284]: Memory usage high: 92%
+Thg 9 05 23:09:57 long-computer logger[4284]: Failed to connect to database, retry 10
+Thg 9 05 23:09:59 long-computer logger[4284]: Memory usage high: 86%
+Thg 9 05 23:09:59 long-computer logger[4284]: Failed to connect to database, retry 11
+Thg 9 05 23:10:01 long-computer logger[4284]: Memory usage high: 94%
+Thg 9 05 23:10:01 long-computer logger[4284]: Failed to connect to database, retry 12
+Thg 9 05 23:10:03 long-computer logger[4284]: Memory usage high: 90%
+Thg 9 05 23:10:03 long-computer logger[4284]: Failed to connect to database, retry 13
+Thg 9 05 23:10:05 long-computer logger[4284]: Memory usage high: 83%
+Thg 9 05 23:10:05 long-computer logger[4284]: Failed to connect to database, retry 14
+Thg 9 05 23:10:07 long-computer logger[4284]: Memory usage high: 91%
+Thg 9 05 23:10:07 long-computer logger[4284]: Failed to connect to database, retry 15
+Thg 9 05 23:10:09 long-computer logger[4284]: Fatal error: service is crashing now
+Thg 9 05 23:10:09 long-computer systemd[1]: logger.service: Main process exited, code=dumped, status=6/ABRT
+Thg 9 05 23:10:09 long-computer systemd[1]: logger.service: Failed with result 'core-dump'.
+=== 3. Error level and above ===
+Thg 9 05 23:09:39 long-computer logger[4284]: Failed to connect to database, retry 1
+Thg 9 05 23:09:41 long-computer logger[4284]: Failed to connect to database, retry 2
+Thg 9 05 23:09:43 long-computer logger[4284]: Failed to connect to database, retry 3
+Thg 9 05 23:09:45 long-computer logger[4284]: Failed to connect to database, retry 4
+Thg 9 05 23:09:47 long-computer logger[4284]: Failed to connect to database, retry 5
+Thg 9 05 23:09:49 long-computer logger[4284]: Failed to connect to database, retry 6
+Thg 9 05 23:09:51 long-computer logger[4284]: Failed to connect to database, retry 7
+Thg 9 05 23:09:53 long-computer logger[4284]: Failed to connect to database, retry 8
+Thg 9 05 23:09:55 long-computer logger[4284]: Failed to connect to database, retry 9
+Thg 9 05 23:09:57 long-computer logger[4284]: Failed to connect to database, retry 10
+Thg 9 05 23:09:59 long-computer logger[4284]: Failed to connect to database, retry 11
+Thg 9 05 23:10:01 long-computer logger[4284]: Failed to connect to database, retry 12
+Thg 9 05 23:10:03 long-computer logger[4284]: Failed to connect to database, retry 13
+Thg 9 05 23:10:05 long-computer logger[4284]: Failed to connect to database, retry 14
+Thg 9 05 23:10:07 long-computer logger[4284]: Failed to connect to database, retry 15
+Thg 9 05 23:10:09 long-computer logger[4284]: Fatal error: service is crashing now
+=== 4. Log from the last 1 minute ===
+Thg 9 05 23:09:39 long-computer systemd[1]: Started Logger Test Service.
+Thg 9 05 23:09:39 long-computer logger[4284]: Logger service started. PID: 4284
+Thg 9 05 23:09:39 long-computer logger[4284]: Service running normally, cycle 1
+Thg 9 05 23:09:39 long-computer logger[4284]: Memory usage high: 86%
+Thg 9 05 23:09:39 long-computer logger[4284]: Failed to connect to database, retry 1
+Thg 9 05 23:09:41 long-computer logger[4284]: Service running normally, cycle 2
+Thg 9 05 23:09:41 long-computer logger[4284]: Memory usage high: 85%
+Thg 9 05 23:09:41 long-computer logger[4284]: Failed to connect to database, retry 2
+Thg 9 05 23:09:43 long-computer logger[4284]: Service running normally, cycle 3
+Thg 9 05 23:09:43 long-computer logger[4284]: Memory usage high: 93%
+Thg 9 05 23:09:43 long-computer logger[4284]: Failed to connect to database, retry 3
+Thg 9 05 23:09:45 long-computer logger[4284]: Service running normally, cycle 4
+Thg 9 05 23:09:45 long-computer logger[4284]: Memory usage high: 82%
+Thg 9 05 23:09:45 long-computer logger[4284]: Failed to connect to database, retry 4
+Thg 9 05 23:09:47 long-computer logger[4284]: Service running normally, cycle 5
+Thg 9 05 23:09:47 long-computer logger[4284]: Memory usage high: 85%
+Thg 9 05 23:09:47 long-computer logger[4284]: Failed to connect to database, retry 5
+Thg 9 05 23:09:49 long-computer logger[4284]: Service running normally, cycle 6
+Thg 9 05 23:09:49 long-computer logger[4284]: Memory usage high: 94%
+Thg 9 05 23:09:49 long-computer logger[4284]: Failed to connect to database, retry 6
+Thg 9 05 23:09:51 long-computer logger[4284]: Service running normally, cycle 7
+Thg 9 05 23:09:51 long-computer logger[4284]: Memory usage high: 82%
+Thg 9 05 23:09:51 long-computer logger[4284]: Failed to connect to database, retry 7
+Thg 9 05 23:09:53 long-computer logger[4284]: Service running normally, cycle 8
+Thg 9 05 23:09:53 long-computer logger[4284]: Memory usage high: 83%
+Thg 9 05 23:09:53 long-computer logger[4284]: Failed to connect to database, retry 8
+Thg 9 05 23:09:55 long-computer logger[4284]: Service running normally, cycle 9
+Thg 9 05 23:09:55 long-computer logger[4284]: Memory usage high: 93%
+Thg 9 05 23:09:55 long-computer logger[4284]: Failed to connect to database, retry 9
+Thg 9 05 23:09:57 long-computer logger[4284]: Service running normally, cycle 10
+Thg 9 05 23:09:57 long-computer logger[4284]: Memory usage high: 92%
+Thg 9 05 23:09:57 long-computer logger[4284]: Failed to connect to database, retry 10
+Thg 9 05 23:09:59 long-computer logger[4284]: Service running normally, cycle 11
+Thg 9 05 23:09:59 long-computer logger[4284]: Memory usage high: 86%
+Thg 9 05 23:09:59 long-computer logger[4284]: Failed to connect to database, retry 11
+Thg 9 05 23:10:01 long-computer logger[4284]: Service running normally, cycle 12
+Thg 9 05 23:10:01 long-computer logger[4284]: Memory usage high: 94%
+Thg 9 05 23:10:01 long-computer logger[4284]: Failed to connect to database, retry 12
+Thg 9 05 23:10:03 long-computer logger[4284]: Service running normally, cycle 13
+Thg 9 05 23:10:03 long-computer logger[4284]: Memory usage high: 90%
+Thg 9 05 23:10:03 long-computer logger[4284]: Failed to connect to database, retry 13
+Thg 9 05 23:10:05 long-computer logger[4284]: Service running normally, cycle 14
+Thg 9 05 23:10:05 long-computer logger[4284]: Memory usage high: 83%
+Thg 9 05 23:10:05 long-computer logger[4284]: Failed to connect to database, retry 14
+Thg 9 05 23:10:07 long-computer logger[4284]: Service running normally, cycle 15
+Thg 9 05 23:10:07 long-computer logger[4284]: Memory usage high: 91%
+Thg 9 05 23:10:07 long-computer logger[4284]: Failed to connect to database, retry 15
+Thg 9 05 23:10:09 long-computer logger[4284]: Fatal error: service is crashing now
+Thg 9 05 23:10:09 long-computer systemd[1]: logger.service: Main process exited, code=dumped, status=6/ABRT
+Thg 9 05 23:10:09 long-computer systemd[1]: logger.service: Failed with result 'core-dump'.
+=== 5. Crash point ===
+Thg 9 05 23:09:39 long-computer logger[4284]: Failed to connect to database, retry 1
+Thg 9 05 23:09:41 long-computer logger[4284]: Failed to connect to database, retry 2
+Thg 9 05 23:09:43 long-computer logger[4284]: Failed to connect to database, retry 3
+Thg 9 05 23:09:45 long-computer logger[4284]: Failed to connect to database, retry 4
+Thg 9 05 23:09:47 long-computer logger[4284]: Failed to connect to database, retry 5
+Thg 9 05 23:09:49 long-computer logger[4284]: Failed to connect to database, retry 6
+Thg 9 05 23:09:51 long-computer logger[4284]: Failed to connect to database, retry 7
+Thg 9 05 23:09:53 long-computer logger[4284]: Failed to connect to database, retry 8
+Thg 9 05 23:09:55 long-computer logger[4284]: Failed to connect to database, retry 9
+Thg 9 05 23:09:57 long-computer logger[4284]: Failed to connect to database, retry 10
+Thg 9 05 23:09:59 long-computer logger[4284]: Failed to connect to database, retry 11
+Thg 9 05 23:10:01 long-computer logger[4284]: Failed to connect to database, retry 12
+Thg 9 05 23:10:03 long-computer logger[4284]: Failed to connect to database, retry 13
+Thg 9 05 23:10:05 long-computer logger[4284]: Failed to connect to database, retry 14
+Thg 9 05 23:10:07 long-computer logger[4284]: Failed to connect to database, retry 15
+Thg 9 05 23:10:09 long-computer logger[4284]: Fatal error: service is crashing now
